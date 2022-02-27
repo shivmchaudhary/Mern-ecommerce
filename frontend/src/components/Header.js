@@ -29,19 +29,34 @@ const Header = () => {
       <LinkContainer to='/cart' style={{color: 'white'}}>
         <Nav.Link   className='nav-link' ><i className='fas fa-shopping-cart'></i> 
           Cart</Nav.Link > 
-          </LinkContainer>
+          </LinkContainer >
             {userInfo ? (
-               <NavDropdown title={userInfo.name} id='username'>
+               <NavDropdown title={userInfo.name} id='username' bg="dark" >
                  <LinkContainer to='/profile'>
                    <NavDropdown.Item>Profile</NavDropdown.Item>
                  </LinkContainer>
                  <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                </NavDropdown>
-            ) : <LinkContainer to='/login' style={{color: 'white'}}>
+            ) : (<LinkContainer to='/login' style={{color: 'white'}}>
             <Nav.Link  href='/login'style={{color: 'white'}}><i className ='fas fa-user'></i> 
               Sign In</Nav.Link> 
-              </LinkContainer>}
-          
+              </LinkContainer>)}
+          {userInfo && userInfo.isAdmin && (
+             <NavDropdown title='Admin' id='adminmenu'>
+             <LinkContainer to='/admin/userlist'>
+               <NavDropdown.Item>Users</NavDropdown.Item>
+             </LinkContainer>
+
+             <LinkContainer to='admin/productlist'>
+               <NavDropdown.Item>Products</NavDropdown.Item>
+             </LinkContainer>
+            
+             <LinkContainer to='admin/orderlist'>
+               <NavDropdown.Item>Orders</NavDropdown.Item>
+             </LinkContainer>
+
+           </NavDropdown>
+          )}
       </Nav>
     </Navbar.Collapse> 
     </Container>

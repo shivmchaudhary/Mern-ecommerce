@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import {useNavigate} from 'react-router-dom'
 import { logout } from '../actions/userActions'
 
 const Header = () => {
@@ -9,9 +10,13 @@ const Header = () => {
 
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
+  const navigate = useNavigate();
+
 
   const logoutHandler = () => {
     dispatch(logout())
+    navigate('/login')
+
   }
 
   return (
